@@ -1,0 +1,1 @@
+export { HeadingTwo } from "./HeadingTwo"
