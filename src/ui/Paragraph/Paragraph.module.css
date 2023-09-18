@@ -1,0 +1,11 @@
+.paragraph {
+    font-family: var(--font-nunito);
+    font-size: var(--font-size-mobile-p);
+    color: var(--colour-black);
+}
+
+@media (min-width: 64rem) {
+    .paragraph {
+        font-size: var(--font-size-desktop-p);
+    }
+}

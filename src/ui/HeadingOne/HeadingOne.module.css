@@ -1,0 +1,11 @@
+.headingOne {
+    font-family: var(--font-nunito-sans);
+    font-size: var(--font-size-mobile-h1);
+    color: var(--colour-black);
+}
+
+@media (min-width: 64rem) {
+    .headingOne {
+        font-size: var(--font-size-desktop-h1);
+    }
+}
