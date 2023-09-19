@@ -1,6 +1,7 @@
 .headingOne {
     font-family: var(--font-nunito-sans);
     font-size: var(--font-size-mobile-h1);
+    font-weight: var(--font-weight-h1);
     color: var(--colour-black);
 }
 
