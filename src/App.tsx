@@ -1,5 +1,6 @@
-import { HeadingOne, HeadingTwo, Input, Paragraph, Select, SelectOptionType } from "./ui";
+import { CTA, HeadingOne, HeadingTwo, Input, Paragraph, Select, SelectOptionType } from "./ui";
 import { CheckboxRadio } from "./ui/CheckboxRadio";
+import creditcardIcon from "./assets/creditcardIcon.svg"
 
 function App() {
   const currencyOptions: SelectOptionType[] = [
@@ -28,6 +29,7 @@ function App() {
       <Input placeholder="Test Number Input 69"></Input>
       <CheckboxRadio type="checkbox" name="test" id="test0" labelText="Test 0"></CheckboxRadio>
       <Select selectName="testSelect" optionNodes={currencyOptions}></Select>
+      <CTA iconPath={creditcardIcon} iconAlt="Credit Card Icon" text="Zapłać"></CTA>
     </main>
   );
 }
