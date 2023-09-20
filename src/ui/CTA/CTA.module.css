@@ -1,0 +1,21 @@
+.cta {
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--colour-malachite);
+    box-shadow: 0px 0px 16px 0px rgba(38, 105, 21, 0.30);
+    padding: var(--s-3) var(--s-5) var(--s-3) var(--s-5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-1);
+}
+
+.cta p {
+    color: white;
+    font-family: var(--font-nunito);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-h1);
+    letter-spacing: 0.03rem;
+    text-transform: uppercase;
+}
