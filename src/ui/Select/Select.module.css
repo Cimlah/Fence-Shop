@@ -1,0 +1,29 @@
+.wrapper {
+    width: max-content;
+    padding: var(--s-1) var(--s-3) var(--s-1) var(--s-3);
+    border-radius: 0.5rem;
+    background-color: rgba(22, 156, 232, 0.20);
+    box-shadow: 0px 0px 16px -4px rgba(21, 75, 105, 0.20);
+    
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: var(--s-1);
+}
+
+.select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    width: max-content;
+    color: var(--colour-dark-cerulean);
+    font-family: var(--font-nunito);
+    font-size: var(--font-size-mobile-p);
+    font-weight: var(--font-weight-p);
+}
+
+@media (min-width: 64rem) {
+    .wrapper {
+        font-size: var(--font-size-desktop-p);
+    }
+}
