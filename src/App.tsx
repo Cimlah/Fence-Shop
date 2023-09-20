@@ -1,4 +1,4 @@
-import { HeadingOne, HeadingTwo, Paragraph } from "./ui";
+import { HeadingOne, HeadingTwo, Input, Paragraph } from "./ui";
 
 function App() {
   return (
@@ -6,6 +6,7 @@ function App() {
       <HeadingOne text="Hello World"></HeadingOne>
       <HeadingTwo text="Heading 2"></HeadingTwo>
       <Paragraph text="Paragraph"></Paragraph>
+      <Input placeholder="szerokość"></Input>
     </main>
   );
 }
