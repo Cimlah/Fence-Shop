@@ -1,0 +1,25 @@
+.input {
+    color: var(--colour-dark-cerulean);
+    text-align: center;
+    font-family: var(--font-nunito);
+    font-size: var(--font-size-mobile-p);
+    font-weight: var(--font-weight-p);
+    border: 0.125rem solid transparent;
+    outline: none;
+    border-radius: 0.5rem;
+    background-color: rgba(22, 156, 232, 0.20);
+    box-shadow: 0px 0px 16px -4px rgba(21, 75, 105, 0.20);
+    padding: var(--s-1) var(--s-3) var(--s-1) var(--s-3);
+
+    transition: border 0.1s ease-in-out 0s;
+}
+
+.input:focus {
+    border: 0.125rem solid #169CE8;
+}
+
+@media (min-width: 64rem) {
+    .input {
+        font-size: var(--font-size-desktop-p);
+    }
+}

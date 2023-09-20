@@ -1,6 +1,7 @@
 .paragraph {
     font-family: var(--font-nunito);
     font-size: var(--font-size-mobile-p);
+    font-weight: var(--font-weight-p);
     color: var(--colour-black);
 }
 

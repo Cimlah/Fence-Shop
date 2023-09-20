@@ -11,7 +11,13 @@
     --font-size-desktop-h2: 1.2rem;
     --font-size-desktop-p: 1.2rem;
 
+    --font-weight-h1: 700;
+    --font-weight-h2: 600;
+    --font-weight-p: 400;
+
     --colour-black: #0B0B0B;
+    --colour-gray: #D9D9D9;
+    --colour-dark-cerulean: #154B69;
 
     --breakpoint: 64rem;
 
