@@ -3,7 +3,7 @@ type ImageProps = {
     imageAlt: string
 }
 
-export function Image({ imageAlt, source }: ImageProps) {
+export function ProductImage({ imageAlt, source }: ImageProps) {
     return(
         <img src={source} alt={imageAlt} />
     )
