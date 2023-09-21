@@ -1,6 +1,6 @@
 import styles from './CheckboxRadio.module.css';
 
-type CheckboxRadioProps = {
+export type CheckboxRadioProps = {
     type: "checkbox" | "radio"
     name: string
     id: string
