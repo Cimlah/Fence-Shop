@@ -1,36 +1,73 @@
-import { CTA, HeadingOne, HeadingTwo, Input, Paragraph, Select, SelectOptionType } from "./ui";
-import { CheckboxRadio } from "./ui/CheckboxRadio";
-import creditcardIcon from "./assets/icons/creditcardIcon.svg"
+import { CTA, CheckboxRadio, HeadingOne, HeadingTwo, Input, Paragraph, ProductImage, Select } from "./ui";
+import styles from './App.module.css';
+import { currencyOptions, fenceImages, fenceTypes } from "./componentData";
+import creditCardIcon from "./assets/icons/creditcardIcon.svg"
+import { CSSProperties, useState } from "react";
 
 function App() {
-  const currencyOptions: SelectOptionType[] = [
-    {
-      optionText: "USD",
-      exchangeRate: 4.3,
-      value: "usd",
-    },
-    {
-      optionText: "EUR",
-      exchangeRate: 4.6,
-      value: "eur",
-    },
-    {
-      optionText: "PLN",
-      exchangeRate: 1,
-      value: "pln",
-    },
-  ]
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+  window.addEventListener('resize', () => {
+    setViewportWidth(window.innerWidth)
+  })
+
+  const heightStyles: CSSProperties = {
+    paddingBlock: (viewportWidth < 1024) ? "var(--s-3) var(--s-3)" : "0 0",
+    height: (viewportWidth < 1024) ? "calc(100vh - 99px)" : "",
+  }
 
   return (
-    <main>
-      <HeadingOne text="Hello World"></HeadingOne>
-      <HeadingTwo text="Heading 2"></HeadingTwo>
-      <Paragraph text="Paragraph"></Paragraph>
-      <Input placeholder="Test Number Input 69"></Input>
-      <CheckboxRadio type="checkbox" name="test" id="test0" labelText="Test 0"></CheckboxRadio>
-      <Select selectName="testSelect" optionNodes={currencyOptions}></Select>
-      <CTA iconPath={creditcardIcon} iconAlt="Credit Card Icon" text="Zapłać"></CTA>
+    <>
+    <main className={styles.productCard} style={{
+      height: heightStyles.height,
+      }}>
+      <ProductImage source={fenceImages[0].source} imageAlt={fenceImages[0].imageAlt} />
+
+      <div className={styles.productDescription}>
+        <div className={styles.wrapper}>
+          <HeadingOne text="Siatka ogrodowa" />
+          <Paragraph text="Najlepszej jakości siatka, tylko w naszym sklepie" />
+        </div>
+
+        <div className={styles.wrapper}>
+          <HeadingTwo text="Wybierz rodzaj siatki" />
+          {
+            fenceTypes.map((node, index) => {
+              return <CheckboxRadio id={node.id} labelText={node.labelText} name={node.name} type={node.type} key={index} />
+            })
+          }
+        </div>
+
+        <div className={styles.wrapper}>
+          <HeadingTwo text="Podaj wymiary swojego ogrodu w metrach" />
+          <div className={styles.inputWrapper}>
+            <Input placeholder="szerokość" />
+            <Paragraph text="X" />
+            <Input placeholder="długość" />
+          </div>
+        </div>
+
+        <div className={styles.wrapper}>
+          <HeadingTwo text="Wybierz walutę" />
+          <Select selectName="currency" optionNodes={currencyOptions}></Select>
+        </div>
+
+        <div className={styles.wrapper}>
+          <HeadingTwo text="Zniżka dla stałych klientów" />
+          <CheckboxRadio id="discount" labelText="Zaznacz aby dostać zniżkę 10%" name="discount" type="checkbox" />
+        </div>
+        
+        <div className={styles.ctaSectionDesktop}>
+          <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+          <p className={styles.priceTag}>$420.69</p>
+        </div>
+      </div>
     </main>
+    
+    <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock }}>
+      <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+      <p className={styles.priceTag}>$420.69</p>
+    </section>
+    </>
   );
 }
 
