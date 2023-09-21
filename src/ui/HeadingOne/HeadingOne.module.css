@@ -3,10 +3,12 @@
     font-size: var(--font-size-mobile-h1);
     font-weight: var(--font-weight-h1);
     color: var(--colour-black);
+    margin-top: var(--s-4);
 }
 
 @media (min-width: 64rem) {
     .headingOne {
         font-size: var(--font-size-desktop-h1);
+        margin-top: 0;
     }
 }
