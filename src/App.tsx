@@ -1,6 +1,6 @@
 import { CTA, HeadingOne, HeadingTwo, Input, Paragraph, Select, SelectOptionType } from "./ui";
 import { CheckboxRadio } from "./ui/CheckboxRadio";
-import creditcardIcon from "./assets/creditcardIcon.svg"
+import creditcardIcon from "./assets/icons/creditcardIcon.svg"
 
 function App() {
   const currencyOptions: SelectOptionType[] = [

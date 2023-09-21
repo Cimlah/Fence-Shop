@@ -1,5 +1,5 @@
 import styles from './Select.module.css';
-import arrowIcon from '../../assets/arrowIcon.svg'
+import arrowIcon from '../../assets/icons/arrowIcon.svg'
 
 export type SelectOptionType = {
     value: string
