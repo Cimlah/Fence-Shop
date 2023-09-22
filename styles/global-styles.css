@@ -30,6 +30,10 @@
     --s-5: 2rem;
 }
 
+button, input[type="checkbox"], input[type="radio"] {
+    cursor: pointer;
+}
+
 @media (min-width: 64rem) {
     #root {
         width: 100vw;
