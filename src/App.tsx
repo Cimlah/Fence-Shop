@@ -2,7 +2,7 @@ import { CTA, CheckboxRadio, HeadingOne, HeadingTwo, Input, Paragraph, ProductIm
 import styles from './App.module.css';
 import { currencyOptions, fenceImages, fenceTypes } from "./componentData";
 import creditCardIcon from "./assets/icons/creditcardIcon.svg"
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 
 function App() {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
@@ -12,8 +12,18 @@ function App() {
 
   const heightStyles: CSSProperties = {
     paddingBlock: (viewportWidth < 1024) ? "var(--s-3) var(--s-3)" : "0 0",
-    height: (viewportWidth < 1024) ? "calc(100vh - 99px)" : "",
+    height: (viewportWidth < 1024) ? "calc(100svh - 99px)" : "",
   }
+
+  const productDescription = useRef<HTMLDivElement>(null)
+  const [productDescriptionWidth, setProductDescriptionWidth] = useState("")
+  function getProductDescriptionWidth() {
+    return window.getComputedStyle(productDescription.current as Element).width
+  }
+  useEffect(() => {
+    setProductDescriptionWidth(getProductDescriptionWidth())
+  }, [])
+  window.addEventListener('resize', () => setProductDescriptionWidth(getProductDescriptionWidth()))
 
   return (
     <>
@@ -22,7 +32,7 @@ function App() {
       }}>
       <ProductImage source={fenceImages[0].source} imageAlt={fenceImages[0].imageAlt} />
 
-      <div className={styles.productDescription}>
+      <div className={styles.productDescription} ref={productDescription}>
         <div className={styles.wrapper}>
           <HeadingOne text="Siatka ogrodowa" />
           <Paragraph text="Najlepszej jakości siatka, tylko w naszym sklepie" />
@@ -63,10 +73,13 @@ function App() {
       </div>
     </main>
     
-    <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock }}>
-      <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
-      <p className={styles.priceTag}>$420.69</p>
+    <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock, width: productDescriptionWidth }}>
+      <div className={styles.ctaSectionWrapper}>
+        <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+        <p className={styles.priceTag}>$420.69</p>
+      </div>
     </section>
+    {console.log(productDescriptionWidth)}
     </>
   );
 }
