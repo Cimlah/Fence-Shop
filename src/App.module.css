@@ -1,0 +1,103 @@
+.productCard {
+    width: 100vw;
+    overflow-y: scroll;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productDescription {
+    padding-inline: var(--s-3) var(--s-3);
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--s-4);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--s-2);
+}
+
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: var(--s-1);
+}
+
+.ctaSection {
+    width: 100%;
+    padding-inline: var(--s-3) var(--s-3);
+    border-radius: 1rem 1rem 0rem 0rem;
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    background-color: rgba(255, 255, 255, 0.10);
+    box-shadow: 0px 0px 16px 0px rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(4px);
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.ctaSectionWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: var(--s-4);
+}
+
+.priceTag {
+    color: var(--colour-malachite);
+    font-family: var(--font-nunito);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.ctaSectionDesktop {
+    width: 100%;
+    border-radius: 1rem 1rem 0rem 0rem;
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    background-color: rgba(255, 255, 255, 0.50);
+    box-shadow: 0px 0px 16px 0px rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    display: none;
+    align-items: center;
+    justify-content: start;
+    gap: var(--s-4);
+}
+
+@media (min-width: 64rem) {
+    .productCard {
+        width: min-content;
+        overflow-y: visible;
+        border-radius: 1rem;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .productDescription {
+        padding-block: var(--s-5) var(--s-5);
+    }
+
+    .ctaSection {
+        display: none;
+    }
+
+    .ctaSectionDesktop {
+        display: flex;
+    }
+}

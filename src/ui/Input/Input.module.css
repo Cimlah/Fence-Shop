@@ -1,4 +1,5 @@
 .input {
+    width: 12ch;
     color: var(--colour-dark-cerulean);
     text-align: center;
     font-family: var(--font-nunito);
