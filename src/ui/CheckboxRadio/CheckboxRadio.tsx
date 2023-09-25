@@ -14,18 +14,8 @@ export function CheckboxRadio({ type, name, id, labelText, value }: CheckboxRadi
     const { setFenceContext } = useContext(FenceContext)
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setFenceContext?.((prev) => {
-            if(type == "radio") {
-                return {
-                    ...prev,
-                    fenceType: e.target.value
-                }
-            }
-            else {
-                return {
-                    ...prev,
-                    discount: e.target.checked
-                }
-            }
+            if(type == "radio") return { ...prev, fenceType: e.target.value }
+            else return { ...prev, discount: { isApplied: e.target.checked, value: Number(e.target.value) } }
         })
     }
 

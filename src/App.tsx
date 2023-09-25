@@ -9,7 +9,10 @@ export type fenceDataType = {
   width: number
   length: number
   currency: string
-  discount: boolean
+  discount: {
+    isApplied: boolean
+    value: number
+  }
 }
 type fenceContextType = {
   fenceContext: fenceDataType | null
@@ -41,11 +44,34 @@ function App() {
 
   const [fenceData, setFenceData] = useState<fenceDataType>({
     currency: "usd",
-    discount: false,
+    discount: {
+      isApplied: false,
+      value: 0,
+    },
     fenceType: "standard",
     length: 0,
     width: 0,
   })
+  enum fenceTypePrices {
+    standard = 10,
+    galvanised = 12,
+    coated = 20,
+  }
+  enum currencyValue {
+    pln = 1,
+    usd = 4.3,
+    eur = 4.6
+  }
+  function finalPrice() {
+    const { width, length, fenceType, currency, discount } = fenceData
+    let result = Math.round(((width * length * fenceTypePrices[fenceType as keyof typeof fenceTypePrices]) / currencyValue[currency as keyof typeof currencyValue])*100) / 100
+
+    if(discount.isApplied) result = Math.round((result * ((100 - discount.value) / 100)) * 100) / 100
+
+    if(currency == "usd") return "$" + result
+    else if(currency == "eur") return result + "€"
+    else return result + " PLN"
+  }
 
   return (
     <>
@@ -92,7 +118,7 @@ function App() {
       
             <div className={styles.ctaSectionDesktop}>
               <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
-              <p className={styles.priceTag}>$420.69</p>
+              <p className={styles.priceTag}>{finalPrice()}</p>
             </div>
           </div>
         </main>
@@ -105,6 +131,7 @@ function App() {
         </section>
       </form>
     </FenceContext.Provider>
+    {console.log(fenceData)}
     </>
   );
 }
