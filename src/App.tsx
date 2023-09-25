@@ -2,7 +2,21 @@ import { CTA, CheckboxRadio, HeadingOne, HeadingTwo, Input, Paragraph, ProductIm
 import styles from './App.module.css';
 import { currencyOptions, fenceImages, fenceTypes } from "./componentData";
 import creditCardIcon from "./assets/icons/creditcardIcon.svg"
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties, createContext, useEffect, useRef, useState } from "react";
+
+export type fenceDataType = {
+  fenceType: string
+  width: number
+  length: number
+  currency: string
+  discount: boolean
+}
+type fenceContextType = {
+  fenceContext: fenceDataType | null
+  setFenceContext: React.Dispatch<React.SetStateAction<fenceDataType>> | null
+}
+
+export const FenceContext = createContext<fenceContextType>({fenceContext: null, setFenceContext: null})
 
 function App() {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
@@ -25,61 +39,72 @@ function App() {
   }, [])
   window.addEventListener('resize', () => setProductDescriptionWidth(getProductDescriptionWidth()))
 
+  const [fenceData, setFenceData] = useState<fenceDataType>({
+    currency: "usd",
+    discount: false,
+    fenceType: "standard",
+    length: 0,
+    width: 0,
+  })
+
   return (
     <>
-    <main className={styles.productCard} style={{
-      height: heightStyles.height,
-      }}>
-      <ProductImage source={fenceImages[0].source} imageAlt={fenceImages[0].imageAlt} />
+    <FenceContext.Provider value={{fenceContext: fenceData, setFenceContext: setFenceData}}>
+      <form name="formData">
+        <main className={styles.productCard} style={{
+          height: heightStyles.height,
+          }}>
+          <ProductImage source={fenceImages[0].source} imageAlt={fenceImages[0].imageAlt} />
 
-      <div className={styles.productDescription} ref={productDescription}>
-        <div className={styles.wrapper}>
-          <HeadingOne text="Siatka ogrodowa" />
-          <Paragraph text="Najlepszej jakości siatka, tylko w naszym sklepie" />
-        </div>
+          <div className={styles.productDescription} ref={productDescription}>
+            <div className={styles.wrapper}>
+              <HeadingOne text="Siatka ogrodowa" />
+              <Paragraph text="Najlepszej jakości siatka, tylko w naszym sklepie" />
+            </div>
 
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Wybierz rodzaj siatki" />
-          {
-            fenceTypes.map((node, index) => {
-              return <CheckboxRadio id={node.id} labelText={node.labelText} name={node.name} type={node.type} key={index} />
-            })
-          }
-        </div>
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Wybierz rodzaj siatki" />
+              {
+                fenceTypes.map((node, index) => {
+                  return <CheckboxRadio id={node.id} labelText={node.labelText} name={node.name} type={node.type} value={node.value} key={index} />
+                })
+              }
+            </div>
 
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Podaj wymiary swojego ogrodu w metrach" />
-          <div className={styles.inputWrapper}>
-            <Input placeholder="szerokość" />
-            <Paragraph text="X" />
-            <Input placeholder="długość" />
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Podaj wymiary swojego ogrodu w metrach" />
+              <div className={styles.inputWrapper}>
+                <Input placeholder="szerokość" name="width" />
+                <Paragraph text="X" />
+                <Input placeholder="długość" name="length" />
+              </div>
+            </div>
+
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Wybierz walutę" />
+              <Select selectName="currency" optionNodes={currencyOptions}></Select>
+            </div>
+
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Zniżka dla stałych klientów" />
+              <CheckboxRadio id="discount" labelText="Zaznacz aby dostać zniżkę 10%" name="discount" type="checkbox" value={10} />
+            </div>
+      
+            <div className={styles.ctaSectionDesktop}>
+              <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+              <p className={styles.priceTag}>$420.69</p>
+            </div>
           </div>
-        </div>
-
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Wybierz walutę" />
-          <Select selectName="currency" optionNodes={currencyOptions}></Select>
-        </div>
-
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Zniżka dla stałych klientów" />
-          <CheckboxRadio id="discount" labelText="Zaznacz aby dostać zniżkę 10%" name="discount" type="checkbox" />
-        </div>
-        
-        <div className={styles.ctaSectionDesktop}>
-          <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
-          <p className={styles.priceTag}>$420.69</p>
-        </div>
-      </div>
-    </main>
-    
-    <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock, width: productDescriptionWidth }}>
-      <div className={styles.ctaSectionWrapper}>
-        <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
-        <p className={styles.priceTag}>$420.69</p>
-      </div>
-    </section>
-    {console.log(productDescriptionWidth)}
+        </main>
+      
+        <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock, width: productDescriptionWidth }}>
+          <div className={styles.ctaSectionWrapper}>
+            <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+            <p className={styles.priceTag}>$420.69</p>
+          </div>
+        </section>
+      </form>
+    </FenceContext.Provider>
     </>
   );
 }
