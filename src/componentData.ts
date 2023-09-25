@@ -24,18 +24,21 @@ const fenceTypes: CheckboxRadioProps[] = [
         name: "fenceType",
         labelText: "Standard",
         id: "standard",
+        value: "standard",
     },
     {
         type: "radio",
         name: "fenceType",
         labelText: "Ocynkowana",
         id: "galvanised",
+        value: "galvanised",
     },
     {
         type: "radio",
         name: "fenceType",
         labelText: "Powlekana",
         id: "coated",
+        value: "coated",
     },
 ]
 

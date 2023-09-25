@@ -66,7 +66,7 @@ function App() {
           <HeadingTwo text="Wybierz rodzaj siatki" />
           {
             fenceTypes.map((node, index) => {
-              return <CheckboxRadio id={node.id} labelText={node.labelText} name={node.name} type={node.type} key={index} />
+                  return <CheckboxRadio id={node.id} labelText={node.labelText} name={node.name} type={node.type} value={node.value} key={index} />
             })
           }
         </div>
@@ -87,7 +87,7 @@ function App() {
 
         <div className={styles.wrapper}>
           <HeadingTwo text="Zniżka dla stałych klientów" />
-          <CheckboxRadio id="discount" labelText="Zaznacz aby dostać zniżkę 10%" name="discount" type="checkbox" />
+              <CheckboxRadio id="discount" labelText="Zaznacz aby dostać zniżkę 10%" name="discount" type="checkbox" value={10} />
         </div>
         
         <div className={styles.ctaSectionDesktop}>
