@@ -51,58 +51,58 @@ function App() {
     <>
     <FenceContext.Provider value={{fenceContext: fenceData, setFenceContext: setFenceData}}>
       <form name="formData">
-    <main className={styles.productCard} style={{
-      height: heightStyles.height,
-      }}>
-      <ProductImage source={fenceImages[0].source} imageAlt={fenceImages[0].imageAlt} />
+        <main className={styles.productCard} style={{
+          height: heightStyles.height,
+          }}>
+          <ProductImage source={fenceImages[0].source} imageAlt={fenceImages[0].imageAlt} />
 
-      <div className={styles.productDescription} ref={productDescription}>
-        <div className={styles.wrapper}>
-          <HeadingOne text="Siatka ogrodowa" />
-          <Paragraph text="Najlepszej jakości siatka, tylko w naszym sklepie" />
-        </div>
+          <div className={styles.productDescription} ref={productDescription}>
+            <div className={styles.wrapper}>
+              <HeadingOne text="Siatka ogrodowa" />
+              <Paragraph text="Najlepszej jakości siatka, tylko w naszym sklepie" />
+            </div>
 
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Wybierz rodzaj siatki" />
-          {
-            fenceTypes.map((node, index) => {
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Wybierz rodzaj siatki" />
+              {
+                fenceTypes.map((node, index) => {
                   return <CheckboxRadio id={node.id} labelText={node.labelText} name={node.name} type={node.type} value={node.value} key={index} />
-            })
-          }
-        </div>
+                })
+              }
+            </div>
 
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Podaj wymiary swojego ogrodu w metrach" />
-          <div className={styles.inputWrapper}>
-            <Input placeholder="szerokość" />
-            <Paragraph text="X" />
-            <Input placeholder="długość" />
-          </div>
-        </div>
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Podaj wymiary swojego ogrodu w metrach" />
+              <div className={styles.inputWrapper}>
+                <Input placeholder="szerokość" name="width" />
+                <Paragraph text="X" />
+                <Input placeholder="długość" name="length" />
+              </div>
+            </div>
+            
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Wybierz walutę" />
+              <Select selectName="currency" optionNodes={currencyOptions}></Select>
+            </div>
 
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Wybierz walutę" />
-          <Select selectName="currency" optionNodes={currencyOptions}></Select>
-        </div>
-
-        <div className={styles.wrapper}>
-          <HeadingTwo text="Zniżka dla stałych klientów" />
+            <div className={styles.wrapper}>
+              <HeadingTwo text="Zniżka dla stałych klientów" />
               <CheckboxRadio id="discount" labelText="Zaznacz aby dostać zniżkę 10%" name="discount" type="checkbox" value={10} />
-        </div>
-        
-        <div className={styles.ctaSectionDesktop}>
-          <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
-          <p className={styles.priceTag}>$420.69</p>
-        </div>
-      </div>
-    </main>
-    
-    <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock, width: productDescriptionWidth }}>
-      <div className={styles.ctaSectionWrapper}>
-        <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
-        <p className={styles.priceTag}>$420.69</p>
-      </div>
-    </section>
+            </div>
+      
+            <div className={styles.ctaSectionDesktop}>
+              <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+              <p className={styles.priceTag}>$420.69</p>
+            </div>
+          </div>
+        </main>
+      
+        <section className={styles.ctaSection} style={{ paddingBlock: heightStyles.paddingBlock, width: productDescriptionWidth }}>
+          <div className={styles.ctaSectionWrapper}>
+            <CTA text="Zapłać" iconPath={creditCardIcon} iconAlt="Credit Card Icon" />
+            <p className={styles.priceTag}>$420.69</p>
+          </div>
+        </section>
       </form>
     </FenceContext.Provider>
     </>
