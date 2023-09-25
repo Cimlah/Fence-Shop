@@ -79,7 +79,7 @@ function App() {
                 <Input placeholder="długość" name="length" />
               </div>
             </div>
-            
+
             <div className={styles.wrapper}>
               <HeadingTwo text="Wybierz walutę" />
               <Select selectName="currency" optionNodes={currencyOptions}></Select>
